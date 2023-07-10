@@ -1,4 +1,5 @@
 const desc = require("./descripteur.js");
+const fusion = require("./fusion.js");
 
 const obj = function(prototype, propriétés) {
   return Object.create(prototype, propriétés);
@@ -8,8 +9,9 @@ function constructeur(fabrique) {
     constructor: desc.direct(fabrique, true, false, true)
   }
 }
-function fusion(cible, ...compléments) {
-  return Object.assign(cible, ...compléments);
+function hérite(fabrique, superconstructeur, comportement) {
+  const compléments = comportement ? fusion(constructeur(fabrique), comportement) : constructeur(fabrique);
+  fabrique.prototype = obj(superconstructeur, compléments);
 }
 
 obj.fusion = fusion;
@@ -19,6 +21,6 @@ obj.entrées = Object.entries;
 obj.glossaire = function glossaire(objet) {
   return new Map(obj.entrées(objet));
 };
-obj.
+obj.hérite = hérite;
 
 module.exports = obj;
