@@ -74,10 +74,15 @@ function propre(cible, nom, accès, assignation, visible = true, configurable = 
   return définir;
 }
 
+function caché(cible, nom, initiale, configurable = false) {
+  return muable(cible, nom, initiale, false, configurable);
+}
+
 définir.muable = muable;
 définir.immuable = immuable;
 définir.lu = lu;
 définir.écrit = écrit;
 définir.propre = propre;
+définir.caché = caché;
 
 module.exports = définir;
