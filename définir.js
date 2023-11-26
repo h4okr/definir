@@ -1,3 +1,9 @@
+const { direct, indirect } = require("./descripteur.js");
+/*
+const desc = require("./descripteur.js");
+console.log(desc);
+console.log(Object.getOwnPropertyNames(desc).join(","));
+*/
 const définir = function définir(...a) {
   return Object.defineProperty(...a);
 };

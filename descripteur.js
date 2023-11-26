@@ -18,3 +18,5 @@ const descripteur = {
   direct: direct,
   indirect: indirect
 };
+
+module.exports = descripteur;
