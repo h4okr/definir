@@ -1,6 +1,6 @@
 import desc from "./descripteur.js";
 import fusion from "./fusion.js";
-import Glossaire from "./glossaire.js";
+import Glossaire from "./glossaire.js"
 
 const obj = function(prototype, propriétés) {
   return Object.create(prototype, propriétés);
