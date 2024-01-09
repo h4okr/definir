@@ -1,12 +1,19 @@
-class Glossaire extends Map {
+export default class Glossaire extends Map {
   constructor(...entrées) {
     super(...entrées);
   }
-  objet() {
-    return Glossaire.objet(this);
+  get taille() {
+    return this.size;
   }
+  objet() {
+    return Object.fromEntries(this);
+  }
+  vider = this.clear;
+  supprimer = this.delete;
+  itérer(délégué, sujet) {
+    this.forEach(délégué, sujet ?? this);
+  } 
+  lire = this.get;
+  a = this.has;
+  écrire = this.set;
 }
-
-Glossaire.objet = Object.fromEntries;
-
-module.exports = Glossaire;

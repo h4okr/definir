@@ -1,4 +1,4 @@
-const { direct, indirect } = require("./descripteur.js");
+import { direct, indirect } from "./descripteur.js";
 /*
 const desc = require("./descripteur.js");
 console.log(desc);
@@ -18,7 +18,7 @@ const définir = function définir(...a) {
  * @param {boolean} configurable 
  * @returns définir
  */
-function muable(cible, nom, initiale, visible = true, configurable = false) {
+export function muable(cible, nom, initiale, visible = true, configurable = false) {
   définir(cible, nom, direct(initiale, true, visible, configurable));
   return définir;
 }
@@ -32,7 +32,7 @@ function muable(cible, nom, initiale, visible = true, configurable = false) {
  * @param {*} configurable 
  * @returns définir
  */
-function immuable(cible, nom, constante, visible = true, configurable = false) {
+export function immuable(cible, nom, constante, visible = true, configurable = false) {
   définir(cible, nom, direct(constante, false, visible, configurable));
   return définir;
 }
@@ -46,7 +46,7 @@ function immuable(cible, nom, constante, visible = true, configurable = false) {
  * @param {*} configurable 
  * @returns définir
  */
-function lu(cible, nom, accès, visible = true, configurable = false) {
+export function lu(cible, nom, accès, visible = true, configurable = false) {
   définir(cible, nom, indirect(accès, undefined, visible, configurable));
   return définir;
 }
@@ -60,7 +60,7 @@ function lu(cible, nom, accès, visible = true, configurable = false) {
  * @param {*} configurable 
  * @returns définir
  */
-function écrit(cible, nom, assignation, visible = true, configurable = false) {
+export function écrit(cible, nom, assignation, visible = true, configurable = false) {
   définir(cible, nom, indirect(undefined, assignation, visible, configurable));
   return définir;
 }
@@ -75,20 +75,20 @@ function écrit(cible, nom, assignation, visible = true, configurable = false) {
  * @param {*} configurable 
  * @returns définir
  */
-function propre(cible, nom, accès, assignation, visible = true, configurable = false) {
+export function propre(cible, nom, accès, assignation, visible = true, configurable = false) {
   définir(cible, nom, indirect(accès, assignation, visible, configurable));
   return définir;
 }
 
-function caché(cible, nom, initiale, configurable = false) {
+export function caché(cible, nom, initiale, configurable = false) {
   return muable(cible, nom, initiale, false, configurable);
 }
 
-définir.muable = muable;
-définir.immuable = immuable;
-définir.lu = lu;
-définir.écrit = écrit;
-définir.propre = propre;
-définir.caché = caché;
-
-module.exports = définir;
+export default {
+  muable,
+  immuable,
+  lu,
+  écrit,
+  propre,
+  caché
+}

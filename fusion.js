@@ -1,3 +1,3 @@
-module.exports = function fusion(cible, ...compléments) {
+export default function fusion(cible, ...compléments) {
   return Object.assign(cible, ...compléments);
 };

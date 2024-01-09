@@ -1,5 +1,8 @@
-module.exports = {
-  définir: require("./définir"),
-  objet: require("./objet"),
-  Glossaire: require("./glossaire")
-}
+import définir from "./définir";
+import objet from "./objet";
+import Glossaire from "./glossaire";
+
+export const objet = objet;
+export const Glossaire = Glossaire;
+
+export default définir;
