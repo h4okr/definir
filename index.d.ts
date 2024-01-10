@@ -15,11 +15,16 @@ export declare interface Glossaire<Entrée,Article> extends Map<Entrée,Article>
   lire(entrée: Entrée): Article | undefined;
   a(entrée: Entrée): boolean;
   écrire(entrée: Entrée, article: Article): this;
+  /**
+   * Créé un objet avec des propriétés ayant pour nom les entrées de ce glossaire
+   * valorisées avec les articles.
+   */
+  objet(): {};
 }
 
 interface GlossaireConstructor {
   new (): Glossaire<any, any>;
-  new <Entrée,Article>(entries?: readonly (readonly [Entrée, Article])[] | null): Glossaire<Entrée,Article>;
+  new <Entrée,Article>(définitions?: readonly (readonly [Entrée, Article])[] | null): Glossaire<Entrée,Article>;
   readonly prototype: Glossaire<any, any>;
 }
 

@@ -5,7 +5,7 @@ export default class Glossaire extends Map {
   get taille() {
     return this.size;
   }
-  objet(prototype) {
+  objet() {
     return Object.fromEntries(this);
   }
   vider = this.clear;
