@@ -7,7 +7,8 @@ export declare namespace définir {
   export function caché(cible: any, nom: PropertyKey, initiale: any, configurable?: boolean);
 }
 
-export declare interface Glossaire<Entrée,Article> extends Map<Entrée,Article> {
+export class Glossaire<Entrée,Article> extends Map<Entrée,Article> {
+  constructor<Entrée,Article>(définitions?: readonly (readonly [Entrée, Article])[] | null): Glossaire<Entrée,Article>;
   readonly taille: number;
   vider(): void;
   supprimer(entrée: Entrée): boolean;
@@ -20,12 +21,6 @@ export declare interface Glossaire<Entrée,Article> extends Map<Entrée,Article>
    * valorisées avec les articles.
    */
   objet(): {};
-}
-
-interface GlossaireConstructor {
-  new (): Glossaire<any, any>;
-  new <Entrée,Article>(définitions?: readonly (readonly [Entrée, Article])[] | null): Glossaire<Entrée,Article>;
-  readonly prototype: Glossaire<any, any>;
 }
 
 export declare const Glossaire: GlossaireConstructor;
@@ -41,4 +36,8 @@ export declare namespace objet {
 
 export function objet(prototype: object|null, propriétés: PropertyDescriptorMap): any;
 
-export default définir;
+export default {
+  définir,
+  Glossaire,
+  objet
+}
