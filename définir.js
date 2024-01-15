@@ -109,11 +109,11 @@ export function caché(cible, nom, initiale, configurable = false) {
   return muable(cible, nom, initiale, false, configurable);
 }
 
-export default {
-  muable,
-  immuable,
-  lu,
-  écrit,
-  propre,
-  caché,
-};
+immuable(définir, "immuable", immuable);
+immuable(définir, "muable", muable);
+immuable(définir, "lu", lu);
+immuable(définir, "écrit", écrit);
+immuable(définir, "propre", propre);
+immuable(définir, "caché", caché);
+
+export default définir;

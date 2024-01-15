@@ -1,10 +1,12 @@
+export function définir<any>(o: any, p: PropertyKey, attributes: PropertyDescriptor & ThisType<any>): any;
+
 export declare namespace définir {
-  export function muable(cible: any, nom: PropertyKey, initiale: any|undefined, visible?: boolean, configurable?: boolean);
-  export function immuable(cible: any, nom: PropertyKey, constante: any, visible?: boolean, configurable?: boolean);
-  export function lu(cible: any, nom: PropertyKey, accès: () => any, visible?: boolean, configurable?: boolean);
-  export function écrit(cible: any, nom: PropertyKey, assignation: (valeur: any) => void, visible?: boolean, configurable?: boolean);
-  export function propre(cible: any, nom: PropertyKey, accès: () => any, assignation: (valeur: any) => void, visible?: boolean, configurable?: boolean);
-  export function caché(cible: any, nom: PropertyKey, initiale: any, configurable?: boolean);
+  export function muable(cible: any, nom: PropertyKey, initiale: any|undefined, énumérable?: boolean, configurable?: boolean): définir;
+  export function immuable(cible: any, nom: PropertyKey, constante: any, énumérable?: boolean, configurable?: boolean): définir;
+  export function lu(cible: any, nom: PropertyKey, accès: () => any, énumérable?: boolean, configurable?: boolean): définir;
+  export function écrit(cible: any, nom: PropertyKey, assignation: (valeur: any) => void, énumérable?: boolean, configurable?: boolean): définir;
+  export function propre(cible: any, nom: PropertyKey, accès: () => any, assignation: (valeur: any) => void, énumérable?: boolean, configurable?: boolean): définir;
+  export function caché(cible: any, nom: PropertyKey, initiale: any, configurable?: boolean): définir;
 }
 
 export class Glossaire<Entrée,Article> extends Map<Entrée,Article> {
