@@ -5,7 +5,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:benchmark",
+    "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js test-complet.test.js",
+    "test:integration": "node --experimental-vm-modules node_modules/jest/bin/jest.js test-integration.test.js",
+    "test:benchmark": "node --experimental-vm-modules node_modules/jest/bin/jest.js test-benchmarks.test.js",
+    "test:perf-compare": "node --experimental-vm-modules node_modules/jest/bin/jest.js test/benchmark-optimisation.test.js",
+    "test:original": "node --experimental-vm-modules node_modules/jest/bin/jest.js test/test.js",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch"
   },
   "author": "Arnaud Crohen",
   "license": "MIT",

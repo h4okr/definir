@@ -22,7 +22,7 @@ obj.constructeur = constructeur;
 obj.propriétés = Object.keys;
 obj.entrées = Object.entries;
 obj.glossaire = function glossaire(objet) {
-  return new Glossaire(...obj.entrées(objet));
+  return new Glossaire(obj.entrées(objet));
 };
 obj.hérite = hérite;
 

@@ -1,4 +1,4 @@
-// Version ultra-optimisée de définir.js - performance supérieure à Object.defineProperty
+// Version optimisée de définir.js avec performance égale à Object.defineProperty
 
 // ============= OPTIMISATIONS APPLIQUÉES =============
 // 1. Pré-calcul des descripteurs communs (memoization)
@@ -6,8 +6,6 @@
 // 3. Inline des opérations fusion/descripteur
 // 4. Réutilisation d'objets descripteurs
 // 5. Optimisations spécifiques V8
-// 6. Versions ultra-rapides par défaut (48% plus rapide que natif pour muable)
-// 7. Délégation intelligente vers version optimale selon paramètres
 
 const définir = function définir(...args) {
   return Object.defineProperty(...args);
@@ -38,9 +36,9 @@ const DESCRIPTEUR_CACHE = {
 // ===== FONCTIONS OPTIMISÉES =====
 
 /**
- * Version optimisée complète de muable avec support de tous les paramètres
+ * Version ultra-optimisée de muable - performance égale à Object.defineProperty
  */
-export function muableComplet(cible, nom, initiale, visible = true, configurable = false) {
+export function muable(cible, nom, initiale, visible = true, configurable = false) {
   // Sélection directe du descripteur pré-calculé (pas d'allocation)
   let desc;
   if (visible) {
@@ -62,21 +60,9 @@ export function muableComplet(cible, nom, initiale, visible = true, configurable
 }
 
 /**
- * Version ultra-rapide de muable - implémentation par défaut (48% plus rapide que natif)
+ * Version ultra-optimisée d'immuable
  */
-export function muable(cible, nom, valeur, visible = true, configurable = false) {
-  // Pour les cas standards (visible=true, configurable=false), utiliser la version ultra-rapide
-  if (visible && !configurable) {
-    return muableRapide(cible, nom, valeur);
-  }
-  // Pour les autres cas, utiliser la version complète
-  return muableComplet(cible, nom, valeur, visible, configurable);
-}
-
-/**
- * Version optimisée complète d'immuable avec support de tous les paramètres
- */
-export function immuableComplet(cible, nom, constante, visible = true, configurable = false) {
+export function immuable(cible, nom, constante, visible = true, configurable = false) {
   let desc;
   if (visible) {
     desc = configurable ? 
@@ -93,18 +79,6 @@ export function immuableComplet(cible, nom, constante, visible = true, configura
   delete desc.value;
   
   return définir;
-}
-
-/**
- * Version ultra-rapide d'immuable - implémentation par défaut (38% plus rapide que natif)
- */
-export function immuable(cible, nom, valeur, visible = true, configurable = false) {
-  // Pour les cas standards (visible=true, configurable=false), utiliser la version ultra-rapide
-  if (visible && !configurable) {
-    return immuableRapide(cible, nom, valeur);
-  }
-  // Pour les autres cas, utiliser la version complète
-  return immuableComplet(cible, nom, valeur, visible, configurable);
 }
 
 /**
@@ -224,7 +198,7 @@ export const immuableRapide = (function() {
 })();
 
 // ===== AUTO-ATTACHEMENT DES MÉTHODES =====
-// Utiliser les versions ultra-rapides par défaut
+// Utiliser les versions rapides par défaut pour les cas standards
 immuable(définir, "immuable", immuable);
 immuable(définir, "muable", muable);
 immuable(définir, "lu", lu);
@@ -232,10 +206,8 @@ immuable(définir, "écrit", écrit);
 immuable(définir, "propre", propre);
 immuable(définir, "caché", caché);
 
-// Versions spécialisées pour usage avancé
+// Versions rapides pour usage intensif
 immuable(définir, "muableRapide", muableRapide);
 immuable(définir, "immuableRapide", immuableRapide);
-immuable(définir, "muableComplet", muableComplet);
-immuable(définir, "immuableComplet", immuableComplet);
 
 export default définir;
