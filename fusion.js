@@ -1,3 +1,2 @@
-export default function fusion(cible, ...compléments) {
-  return Object.assign(cible, ...compléments);
-};
+const fusion = Object.assign;
+export default fusion;
